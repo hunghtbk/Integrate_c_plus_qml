@@ -1,4 +1,4 @@
-import QtQuick 2.6
+import QtQuick 2.3
 import QtQuick.Window 2.2
 
 Window {
@@ -7,10 +7,21 @@ Window {
     height: 480
     title: qsTr("Hello World")
 
-    MainForm {
-        anchors.fill: parent
-        mouseArea.onClicked: {
-            console.log(qsTr('Clicked on background. Text: "' + textEdit.text + '"'))
+    Rectangle {
+        anchors.centerIn: parent
+        width: 200
+        height: 50
+        border.color: "black"
+        Text {
+            id: name
+            anchors.centerIn: parent
+            text: qsTr(UIBridge.buttonName())
+        }
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                UIBridge.callMeFromQML();
+            }
         }
     }
 }
